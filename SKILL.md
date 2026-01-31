@@ -1,14 +1,14 @@
 ---
 name: dsiprouter
-description: Call the dSIPRouter REST API using the provided Postman collection (curl + jq).
+description: Call the dSIPRouter REST API using the Postman collection (curl + jq).
 metadata: {"openclaw":{"emoji":"📡","requires":{"bins":["curl","jq"],"env":["DSIP_ADDR","DSIP_TOKEN"]}}}
 ---
 
 # dSIPRouter API skill
 
-This skill is generated from the uploaded Postman collection and provides:
+This skill is generated from the Postman collection and provides:
 - a safe `curl` calling convention
-- a `bin/dsiprouter` helper CLI with subcommands for the collection’s requests
+- a `bin/dsiprouter.sh` helper CLI with subcommands for the collection’s requests
 - example payloads (where present in Postman)
 
 ## Required environment
@@ -46,23 +46,23 @@ dsip_api() {
 
 ```bash
 # list subcommands
-dsiprouter help
+dsiprouter.sh help
 
 # list endpoint groups
-dsiprouter endpointgroups:list | jq .
+dsiprouter.sh endpointgroups:list | jq .
 
 # create inbound mapping with your own JSON payload
-dsiprouter inboundmapping:create '{"did":"13132222223","servers":["#22"],"name":"Taste Pizzabar"}' | jq .
+dsiprouter.sh inboundmapping:create '{"did":"13132222223","servers":["#22"],"name":"Taste Pizzabar"}' | jq .
 
 # or send the Postman sample body
-dsiprouter inboundmapping:create --sample | jq .
+dsiprouter.sh inboundmapping:create --sample | jq .
 ```
 
 ## Kamailio
 
 ```bash
-dsiprouter kamailio:stats | jq .
-dsiprouter kamailio:reload | jq .
+dsiprouter.sh kamailio:stats | jq .
+dsiprouter.sh kamailio:reload | jq .
 ```
 
 ## Endpoint catalog (from Postman)
@@ -109,5 +109,4 @@ dsiprouter kamailio:reload | jq .
 
 ## Included files
 
-- `postman/dsiprouter.postman_collection.json`
-- `bin/dsiprouter`
+- `bin/dsiprouter.sh`
