@@ -33,19 +33,19 @@ sudo apt-get install curl jq
 
 1. **Clone or copy the repository:**
 ```bash
-git clone <repository-url> dsiprouter_skill
-cd dsiprouter_skill
+git clone https://github.com/dOpensource/dsiprouter-skill
+cd dsiprouter-skill
 ```
 
 2. **Make the CLI executable:**
 ```bash
-chmod +x bin/dsiprouter
+chmod +x bin/dsiprouter.sh
 ```
 
 3. **Add to your PATH (optional but recommended):**
 ```bash
 # Copy to a directory in your PATH
-sudo cp bin/dsiprouter /usr/local/bin/
+sudo cp bin/dsiprouter.sh /usr/local/bin/
 
 # Or add the current directory to PATH in your shell profile
 export PATH="$PWD/bin:$PATH"
@@ -72,34 +72,34 @@ To make these permanent, add them to your shell profile (~/.bashrc, ~/.zshrc, et
 ### List Available Commands
 
 ```bash
-dsiprouter help
+dsiprouter.sh help
 ```
 
 ### Basic Usage Examples
 
 **List all endpoint groups:**
 ```bash
-dsiprouter endpointgroups:list | jq .
+dsiprouter.sh endpointgroups:list | jq .
 ```
 
 **Get a specific endpoint group:**
 ```bash
-dsiprouter endpointgroups:get | jq .
+dsiprouter.sh endpointgroups:get | jq .
 ```
 
 **Create an inbound mapping:**
 ```bash
-dsiprouter inboundmapping:create '{"did":"13132222223","servers":["#22"],"name":"My Location"}' | jq .
+dsiprouter.sh inboundmapping:create '{"did":"13132222223","servers":["#22"],"name":"My Location"}' | jq .
 ```
 
 **Check Kamailio statistics:**
 ```bash
-dsiprouter kamailio:list | jq .
+dsiprouter.sh kamailio:list | jq .
 ```
 
 **Reload Kamailio after making changes:**
 ```bash
-dsiprouter kamailio:reload | jq .
+dsiprouter.sh kamailio:reload | jq .
 ```
 
 ## Available Skills
@@ -107,7 +107,7 @@ dsiprouter kamailio:reload | jq .
 This skill provides command groups organized by resource type. Each command follows the pattern:
 
 ```bash
-dsiprouter <resource>:<action> [options]
+dsiprouter.sh <resource>:<action> [options]
 ```
 
 ### Endpoint Groups
@@ -197,12 +197,12 @@ https://$DSIP_ADDR:5000/api/v1
 
 ### 1. Verify Connection
 ```bash
-dsiprouter endpointgroups:list | jq '.count'
+dsiprouter.sh endpointgroups:list | jq '.count'
 ```
 
 ### 2. Create an Endpoint Group
 ```bash
-dsiprouter endpointgroups:create '{
+dsiprouter.sh endpointgroups:create '{
   "name": "My Endpoints",
   "sip_profile_id": 1
 }' | jq .
@@ -210,7 +210,7 @@ dsiprouter endpointgroups:create '{
 
 ### 3. Create an Inbound Mapping
 ```bash
-dsiprouter inboundmapping:create '{
+dsiprouter.sh inboundmapping:create '{
   "did": "13132222223",
   "servers": ["#22"],
   "name": "Main Office",
@@ -222,7 +222,7 @@ dsiprouter inboundmapping:create '{
 ### 4. Reload Configuration
 After making changes, reload Kamailio:
 ```bash
-dsiprouter kamailio:reload | jq .
+dsiprouter.sh kamailio:reload | jq .
 ```
 
 ## Troubleshooting
@@ -253,11 +253,11 @@ error: SSL certificate problem
 ```
 dsiprouter: command not found
 ```
-- Verify the script is executable: `chmod +x bin/dsiprouter`
+- Verify the script is executable: `chmod +x bin/dsiprouter.sh`
 - Ensure the directory is in your PATH or use the full path: `./bin/dsiprouter`
 
 ## Additional Resources
 
 - See [SKILL.md](SKILL.md) for detailed API documentation
 - Check the [Postman collection](postman/dsiprouter.postman_collection.json) for API examples
-- Consult the [LICENSE](LICENSE) for usage terms
+- Consult the [LICENSE](LICENSE.txt) for usage terms
